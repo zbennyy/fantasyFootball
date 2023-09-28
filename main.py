@@ -90,7 +90,7 @@ def create_team_files(teams):
         print_roster(output_file, team.roster)
 
         # close HTML file
-        output_file.write("<p><a href=\"/index.html\">Return to Home</a></p>\n")
+        output_file.write("<p><a href=\"/fantasyFootball\">Return to Home</a></p>\n")
         output_file.write("\t</body>\n\n")
         output_file.write("</html>")
         output_file.close()
