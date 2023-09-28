@@ -269,10 +269,11 @@ def print_teams_to_index_file(output_file, teams):
     output_file.write("\t\t\t\t\t\t\t<th>Losses</th>\n")
     output_file.write("\t\t\t\t\t\t\t<th>Streak</th>\n")
     output_file.write("\t\t\t\t\t\t\t<th>Total Points Scored</th>\n")
-    output_file.write("\t\t\t\t\t\t\t<th>Average Points Scored</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Average Score</th>\n")
     output_file.write("\t\t\t\t\t\t\t<th>Best Score</th>\n")
     output_file.write("\t\t\t\t\t\t\t<th>Worst Score</th>\n")
     output_file.write("\t\t\t\t\t\t\t<th>Standard Deviation</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Chance for Playoffs</th>\n")
     output_file.write("\t\t\t\t\t\t</tr>\n")
     output_file.write("\t\t\t\t\t</thead>\n")
 
@@ -297,6 +298,7 @@ def print_teams_to_index_file(output_file, teams):
         output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[3], 2)) + "</td>\n")
         output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[2], 2)) + "</td>\n")
         output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[5], 2)) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(team.playoff_pct) + "</td>\n")
         output_file.write("\t\t\t\t\t\t</tr>\n")
 
     # close table
