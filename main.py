@@ -4,20 +4,26 @@ from espn_api.football import League
 
 
 # returns the following score data as a list, in order:
-# [number of games played, total points scored, minimum score, maximum score, average score, standard deviation]
+# [number of games played, total points scored, minimum score, maximum score, average score, standard deviation,
+# week of minimum score, week of maximum score]
 def compute_score_data(team):
     games_played = 0
     sum_scores = 0
     min_score = 1000
     max_score = 0
+    min_week = 0
+    max_week = 0
 
-    for score in team.scores:
+    for week in range(len(team.scores)):
+        score = team.scores[week - 1]
         if score != 0:
             sum_scores += score
             if score < min_score:
                 min_score = score
+                min_week = week
             if score > max_score:
                 max_score = score
+                max_week = week
             games_played += 1
 
     average_score = sum_scores / games_played - 1
@@ -30,7 +36,7 @@ def compute_score_data(team):
     variance /= games_played
     standard_deviation = math.sqrt(variance)
 
-    return [games_played, sum_scores, min_score, max_score, average_score, standard_deviation]
+    return [games_played, sum_scores, min_score, max_score, average_score, standard_deviation, min_week, max_week]
 
 
 # gets current standings position of a team
@@ -41,6 +47,71 @@ def sort_key_teams_standings(team):
 # gets position of a player
 def sort_key_players_position(player):
     return player.position
+
+
+def print_team_data(output_file, team):
+
+    # compute relevant data
+    data = compute_score_data(team)
+    max_score = data[3]
+    max_week = data[7]
+    max_opp = team.schedule[max_week - 1].team_name
+    max_opp_id = team.schedule[max_week - 1].team_id
+    max_opp_string = "<a href=\"" + str(max_opp_id) + ".html\">" + max_opp + "</a>"
+    min_score = data[2]
+    min_week = data[6]
+    min_opp = team.schedule[min_week - 1].team_name
+    min_opp_id = team.schedule[min_week - 1].team_id
+    min_opp_string = "<a href=\"" + str(min_opp_id) + ".html\">" + min_opp + "</a>"
+    max_score_string = str(max_score) + " Points in Week " + str(max_week) + " vs " + max_opp_string
+    min_score_string = str(min_score) + " Points in Week " + str(min_week) + " vs " + min_opp_string
+    improvement_since_draft = team.draft_projected_rank - team.standing
+    if improvement_since_draft == 0:
+        improvement_string = "EVEN"
+    elif improvement_since_draft > 0:
+        improvement_string = "+" + str(improvement_since_draft)
+    else:
+        improvement_string = str(improvement_since_draft)
+    projection_string = str(team.draft_projected_rank) + " (" + improvement_string + ")"
+
+    output_file.write("\t\t<h2>Stats</h2>\n")
+    output_file.write("\t\t<p><b>Current Streak:</b> " + team.streak_type + " " + str(team.streak_length) + "</p>\n")
+    output_file.write("\t\t<p><b>Total Points Scored This Season:</b> " + str(round(team.points_for, 2)) + "</p>\n")
+    output_file.write("\t\t<p><b>Average Points Per Game:</b> " + str(round(data[4], 2)) + "</p>\n")
+    output_file.write("\t\t<p><b>Best Score:</b> " + max_score_string + "</p>\n")
+    output_file.write("\t\t<p><b>Worst Score:</b> " + min_score_string + "</p>\n")
+    output_file.write("\t\t<p><b>Draft Day Projected Position:</b> " + projection_string + "</p>\n")
+    output_file.write("\t\t<p><b>Chance to Make Playoffs:</b> " + str(round(team.playoff_pct, 2)) + "%</p>\n")
+
+
+def print_team_scoreboard(output_file, team):
+
+    # initial table setup
+    output_file.write("\t\t<h3>Scoreboard</h3>\n")
+    output_file.write("\t\t<table>\n")
+    output_file.write("\t\t\t<tr>\n")
+    output_file.write("\t\t\t\t<th>Week</th>\n")
+    output_file.write("\t\t\t\t<th>Opponent</th>\n")
+    output_file.write("\t\t\t\t<th>Result</th>\n")
+    output_file.write("\t\t\t</tr>\n")
+
+    # create row for each completed week
+    for week in range(len(team.schedule)):
+        if team.outcomes[week - 1] != "U":
+            opponent_name = team.schedule[week - 1].team_name
+            opponent_link = str(team.schedule[week - 1].team_id) + ".html"
+            outcome = team.outcomes[week - 1]
+            score = team.scores[week - 1]
+            opp_score = team.schedule[week - 1].scores[week - 1]
+            score_string = outcome + " " + str(score) + " - " + str(opp_score)
+            output_file.write("\t\t\t<tr>\n")
+            output_file.write("\t\t\t\t<td>Week " + str(week) + "</td>\n")
+            output_file.write("\t\t\t\t<td><a href=\"" + opponent_link + "\">" + opponent_name + "</a></td>\n")
+            output_file.write("\t\t\t\t<td>" + score_string + "</td>\n")
+            output_file.write("\t\t\t</tr>\n")
+
+    # close table
+    output_file.write("\t\t</table>\n")
 
 
 def print_roster(output_file, players):
@@ -75,18 +146,24 @@ def print_roster(output_file, players):
 def create_team_files(teams):
     for team in teams:
         output_file = open("teams/" + str(team.team_id) + ".html", 'w')
+        team_header_string = ("#" + str(team.standing) + " " + team.team_name + " (" + str(team.wins) + "-" +
+                              str(team.losses) + ")")
 
         # initial HTML setup
         output_file.write("<!DOCTYPE html>\n")
         output_file.write("<html lang=en>\n\n")
         output_file.write("\t<head>\n")
-        output_file.write("\t\t<link rel=\"stylesheet\" href=\"stuff.css\">\n")
+        output_file.write("\t\t<link rel=\"stylesheet\" href=\"teams_stuff.css\">\n")
         output_file.write("\t\t<title>" + team.team_name + "</title>\n")
         output_file.write("\t</head>\n\n")
         output_file.write("\t<body>\n")
-        output_file.write("\t\t<h1>" + team.team_name + " (" + str(team.wins) + "-" + str(team.losses) + ")</h1>\n")
+        output_file.write("\t\t<h1>" + team_header_string + "</h1>\n")
         output_file.write("\t\t<h2>Owner: " + team.owner + "</h2>\n")
 
+        print_team_data(output_file, team)
+        output_file.write("\n")
+        print_team_scoreboard(output_file, team)
+        output_file.write("\n")
         print_roster(output_file, team.roster)
 
         # close HTML file
