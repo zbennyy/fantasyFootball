@@ -4,201 +4,211 @@
 	<head>
 		<link rel="stylesheet" href="stuff.css">
 		<title>Fantasy Football Score Data</title>
-	<head>
+	</head>
 
 	<body>
-		<h1>Fantasy Ball Z 2023</h1>
-		<h3>Last Week's Scores:</h3>
-		<p><b>Team Melkor</b> def. Idiot's Gambit 121.95 - 88.07</p>
-		<p><b>Team Grady</b> def. Dandylion 112.61 - 105.42</p>
-		<p><b>ElPichon</b> def. Team Dasari 122.63 - 109.14</p>
-		<p><b>Unreality</b> def. Team Raman 143.78 - 87.61</p>
-		<p><b>Team Lara</b> def. Cincinnati Monkes 135.62 - 107.93</p>
-		<p><b>Bikini Bottom Super Band</b> def. Foxborough  Fiends 104.05 - 96.88</p>
-		<h3>This Week's Matchups:</h3>
-		<p>Team Melkor (2-1) vs Team Grady (2-1)</p>
-		<p>Team Dasari (2-1) vs Idiot's Gambit (0-3)</p>
-		<p>Unreality (3-0) vs Dandylion (1-2)</p>
-		<p>Team Lara (2-1) vs ElPichon (2-1)</p>
-		<p>Bikini Bottom Super Band (1-2) vs Team Raman (2-1)</p>
-		<p>Foxborough  Fiends (0-3) vs Cincinnati Monkes (1-2)</p>
+		<header>
+			<h1>Fantasy Ball Z 2023</h1>
+		</header>
+		<main>
+			<div class="last_week_scores">
+				<h3>Last Week's Scores:</h3>
+				<p><b>Team Melkor</b> def. Idiot's Gambit 121.95 - 88.07</p>
+				<p><b>Team Grady</b> def. Dandylion 112.61 - 105.42</p>
+				<p><b>ElPichon</b> def. Team Dasari 122.63 - 109.14</p>
+				<p><b>Unreality</b> def. Team Raman 143.78 - 87.61</p>
+				<p><b>Team Lara</b> def. Cincinnati Monkes 135.62 - 107.93</p>
+				<p><b>Bikini Bottom Super Band</b> def. Foxborough  Fiends 104.05 - 96.88</p>
+			</div>
+			<div class="this_week_games">
+				<h3>This Week's Matchups:</h3>
+				<p>Team Melkor (2-1) vs Team Grady (2-1)</p>
+				<p>Team Dasari (2-1) vs Idiot's Gambit (0-3)</p>
+				<p>Unreality (3-0) vs Dandylion (1-2)</p>
+				<p>Team Lara (2-1) vs ElPichon (2-1)</p>
+				<p>Bikini Bottom Super Band (1-2) vs Team Raman (2-1)</p>
+				<p>Foxborough  Fiends (0-3) vs Cincinnati Monkes (1-2)</p>
+			</div>
 
-		<h3>Standings</h3>
-		<table id="standings">
-			<thead>
-				<tr>
-					<th>Pos.</th>
-					<th>Team Name</th>
-					<th>Owner</th>
-					<th>Wins</th>
-					<th>Losses</th>
-					<th>Streak</th>
-					<th>Total Points Scored</th>
-					<th>Average Points Scored</th>
-					<th>Worst Score</th>
-					<th>Best Score</th>
-					<th>Standard Deviation</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td><a href="teams/12.html">Unreality</a></td>
-					<td>Daniel Esponda</td>
-					<td>3</td>
-					<td>0</td>
-					<td>W 3</td>
-					<td>333.95</td>
-					<td>110.32</td>
-					<td>92.46</td>
-					<td>143.78</td>
-					<td>23.08</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td><a href="teams/8.html">ElPichon</a></td>
-					<td>Carlos Esponda</td>
-					<td>2</td>
-					<td>1</td>
-					<td>W 2</td>
-					<td>370.31</td>
-					<td>122.44</td>
-					<td>94.35</td>
-					<td>153.33</td>
-					<td>24.11</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td><a href="teams/5.html">Team Lara</a></td>
-					<td>Diego Lara</td>
-					<td>2</td>
-					<td>1</td>
-					<td>W 2</td>
-					<td>350.52</td>
-					<td>115.84</td>
-					<td>82.74</td>
-					<td>135.62</td>
-					<td>24.17</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td><a href="teams/10.html">Team Raman</a></td>
-					<td>Ashu Raman</td>
-					<td>2</td>
-					<td>1</td>
-					<td>L 1</td>
-					<td>330.64</td>
-					<td>109.21</td>
-					<td>87.61</td>
-					<td>127.69</td>
-					<td>16.79</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td><a href="teams/2.html">Team Dasari</a></td>
-					<td>Sesha Dasari</td>
-					<td>2</td>
-					<td>1</td>
-					<td>L 1</td>
-					<td>324.35</td>
-					<td>107.12</td>
-					<td>104.83</td>
-					<td>110.38</td>
-					<td>2.58</td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td><a href="teams/3.html">Team Melkor</a></td>
-					<td>Mandeep Saha</td>
-					<td>2</td>
-					<td>1</td>
-					<td>W 1</td>
-					<td>310.49</td>
-					<td>102.5</td>
-					<td>92.24</td>
-					<td>121.95</td>
-					<td>13.19</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td><a href="teams/4.html">Team Grady</a></td>
-					<td>Patrick Grady</td>
-					<td>2</td>
-					<td>1</td>
-					<td>W 1</td>
-					<td>293.86</td>
-					<td>96.95</td>
-					<td>90.34</td>
-					<td>112.61</td>
-					<td>10.41</td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td><a href="teams/1.html">Dandylion</a></td>
-					<td>Rutvick Velaga</td>
-					<td>1</td>
-					<td>2</td>
-					<td>L 1</td>
-					<td>326.25</td>
-					<td>107.75</td>
-					<td>93.09</td>
-					<td>127.74</td>
-					<td>14.38</td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td><a href="teams/9.html">Cincinnati Monkes</a></td>
-					<td>Kausik Velaga</td>
-					<td>1</td>
-					<td>2</td>
-					<td>L 2</td>
-					<td>315.17</td>
-					<td>104.06</td>
-					<td>102.25</td>
-					<td>107.93</td>
-					<td>2.53</td>
-				</tr>
-				<tr>
-					<td>10</td>
-					<td><a href="teams/7.html">Bikini Bottom Super Band</a></td>
-					<td>Zac Bennett</td>
-					<td>1</td>
-					<td>2</td>
-					<td>W 1</td>
-					<td>291.36</td>
-					<td>96.12</td>
-					<td>89.35</td>
-					<td>104.05</td>
-					<td>6.11</td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td><a href="teams/11.html">Idiot's Gambit</a></td>
-					<td>Logesh Balaguru</td>
-					<td>0</td>
-					<td>3</td>
-					<td>L 3</td>
-					<td>267.16</td>
-					<td>88.05</td>
-					<td>60.57</td>
-					<td>118.52</td>
-					<td>23.69</td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td><a href="teams/6.html">Foxborough  Fiends</a></td>
-					<td>Soor  Vora</td>
-					<td>0</td>
-					<td>3</td>
-					<td>L 3</td>
-					<td>249.57</td>
-					<td>82.19</td>
-					<td>67.36</td>
-					<td>96.88</td>
-					<td>12.19</td>
-				</tr>
-			</tbody>
-		</table>
+			<div class="league_standings">
+				<h3>Standings</h3>
+				<table id="standings">
+					<thead>
+						<tr>
+							<th>Pos.</th>
+							<th>Team Name</th>
+							<th>Owner</th>
+							<th>Wins</th>
+							<th>Losses</th>
+							<th>Streak</th>
+							<th>Total Points Scored</th>
+							<th>Average Points Scored</th>
+							<th>Worst Score</th>
+							<th>Best Score</th>
+							<th>Standard Deviation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td><a href="teams/12.html">Unreality</a></td>
+							<td>Daniel Esponda</td>
+							<td>3</td>
+							<td>0</td>
+							<td>W 3</td>
+							<td>333.95</td>
+							<td>110.32</td>
+							<td>92.46</td>
+							<td>143.78</td>
+							<td>23.08</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td><a href="teams/8.html">ElPichon</a></td>
+							<td>Carlos Esponda</td>
+							<td>2</td>
+							<td>1</td>
+							<td>W 2</td>
+							<td>370.31</td>
+							<td>122.44</td>
+							<td>94.35</td>
+							<td>153.33</td>
+							<td>24.11</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td><a href="teams/5.html">Team Lara</a></td>
+							<td>Diego Lara</td>
+							<td>2</td>
+							<td>1</td>
+							<td>W 2</td>
+							<td>350.52</td>
+							<td>115.84</td>
+							<td>82.74</td>
+							<td>135.62</td>
+							<td>24.17</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td><a href="teams/10.html">Team Raman</a></td>
+							<td>Ashu Raman</td>
+							<td>2</td>
+							<td>1</td>
+							<td>L 1</td>
+							<td>330.64</td>
+							<td>109.21</td>
+							<td>87.61</td>
+							<td>127.69</td>
+							<td>16.79</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td><a href="teams/2.html">Team Dasari</a></td>
+							<td>Sesha Dasari</td>
+							<td>2</td>
+							<td>1</td>
+							<td>L 1</td>
+							<td>324.35</td>
+							<td>107.12</td>
+							<td>104.83</td>
+							<td>110.38</td>
+							<td>2.58</td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td><a href="teams/3.html">Team Melkor</a></td>
+							<td>Mandeep Saha</td>
+							<td>2</td>
+							<td>1</td>
+							<td>W 1</td>
+							<td>310.49</td>
+							<td>102.5</td>
+							<td>92.24</td>
+							<td>121.95</td>
+							<td>13.19</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td><a href="teams/4.html">Team Grady</a></td>
+							<td>Patrick Grady</td>
+							<td>2</td>
+							<td>1</td>
+							<td>W 1</td>
+							<td>293.86</td>
+							<td>96.95</td>
+							<td>90.34</td>
+							<td>112.61</td>
+							<td>10.41</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td><a href="teams/1.html">Dandylion</a></td>
+							<td>Rutvick Velaga</td>
+							<td>1</td>
+							<td>2</td>
+							<td>L 1</td>
+							<td>326.25</td>
+							<td>107.75</td>
+							<td>93.09</td>
+							<td>127.74</td>
+							<td>14.38</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td><a href="teams/9.html">Cincinnati Monkes</a></td>
+							<td>Kausik Velaga</td>
+							<td>1</td>
+							<td>2</td>
+							<td>L 2</td>
+							<td>315.17</td>
+							<td>104.06</td>
+							<td>102.25</td>
+							<td>107.93</td>
+							<td>2.53</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td><a href="teams/7.html">Bikini Bottom Super Band</a></td>
+							<td>Zac Bennett</td>
+							<td>1</td>
+							<td>2</td>
+							<td>W 1</td>
+							<td>291.36</td>
+							<td>96.12</td>
+							<td>89.35</td>
+							<td>104.05</td>
+							<td>6.11</td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td><a href="teams/11.html">Idiot's Gambit</a></td>
+							<td>Logesh Balaguru</td>
+							<td>0</td>
+							<td>3</td>
+							<td>L 3</td>
+							<td>267.16</td>
+							<td>88.05</td>
+							<td>60.57</td>
+							<td>118.52</td>
+							<td>23.69</td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td><a href="teams/6.html">Foxborough  Fiends</a></td>
+							<td>Soor  Vora</td>
+							<td>0</td>
+							<td>3</td>
+							<td>L 3</td>
+							<td>249.57</td>
+							<td>82.19</td>
+							<td>67.36</td>
+							<td>96.88</td>
+							<td>12.19</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</main>
 	</body>
 
 </html>

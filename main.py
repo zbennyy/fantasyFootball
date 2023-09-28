@@ -89,7 +89,7 @@ def print_team_data(output_file, team):
 def print_team_scoreboard(output_file, team):
 
     # initial table setup
-    output_file.write("\t\t\t<div id=\"team_scoreboard\">\n")
+    output_file.write("\t\t\t<div class=\"scoreboard\">\n")
     output_file.write("\t\t\t\t<h3>Scoreboard</h3>\n")
     output_file.write("\t\t\t\t<table id=\"team_scoreboard\">\n")
     output_file.write("\t\t\t\t\t<tr>\n")
@@ -121,7 +121,7 @@ def print_team_scoreboard(output_file, team):
 def print_roster(output_file, players):
 
     # create table
-    output_file.write("\t\t\t<div id=\"team_roster\">\n")
+    output_file.write("\t\t\t<div class=\"team_roster\">\n")
     output_file.write("\t\t\t\t<h3>Roster</h3>\n")
     output_file.write("\t\t\t\t<table id=\"roster\">\n")
     output_file.write("\t\t\t\t\t<tr>\n")
@@ -178,7 +178,10 @@ def create_team_files(teams):
         print_roster(output_file, team.roster)
 
         # close HTML file
-        output_file.write("<p><a href=\"/fantasyFootball\">Return to Home</a></p>\n")
+        output_file.write("\t\t</main>\n")
+        output_file.write("\t\t<footer>\n")
+        output_file.write("\t\t\t<p><a href=\"/fantasyFootball\">Return to Home</a></p>\n")
+        output_file.write("\t\t</footer>\n")
         output_file.write("\t</body>\n\n")
         output_file.write("</html>")
         output_file.close()
@@ -189,7 +192,8 @@ def print_box_scores_to_index_file(output_file, league):
     # if this is not the first week, print last week's scores
     if league.current_week > 1:
         last_week_box_scores = league.box_scores(league.current_week - 1)
-        output_file.write("\t\t<h3>Last Week's Scores:</h3>\n")
+        output_file.write("\t\t\t<div class=\"last_week_scores\">\n")
+        output_file.write("\t\t\t\t<h3>Last Week's Scores:</h3>\n")
         for match in last_week_box_scores:
             if match.home_score > match.away_score:
                 match_string = ("<b>" + match.home_team.team_name + "</b> def. " + match.away_team.team_name + " " +
@@ -197,68 +201,73 @@ def print_box_scores_to_index_file(output_file, league):
             else:
                 match_string = ("<b>" + match.away_team.team_name + "</b> def. " + match.home_team.team_name + " " +
                                 str(match.away_score) + " - " + str(match.home_score))
-            output_file.write("\t\t<p>" + match_string + "</p>\n")
+            output_file.write("\t\t\t\t<p>" + match_string + "</p>\n")
+        output_file.write("\t\t\t</div>\n")
 
     # print this week's upcoming matchups
     this_week_games = league.box_scores(league.current_week)
-    output_file.write("\t\t<h3>This Week's Matchups:</h3>\n")
+    output_file.write("\t\t\t<div class=\"this_week_games\">\n")
+    output_file.write("\t\t\t\t<h3>This Week's Matchups:</h3>\n")
     for match in this_week_games:
         home_string = (match.home_team.team_name + " (" + str(match.home_team.wins) + "-" +
                        str(match.home_team.losses) + ")")
         away_string = (match.away_team.team_name + " (" + str(match.away_team.wins) + "-" +
                        str(match.away_team.losses) + ")")
         match_string = home_string + " vs " + away_string
-        output_file.write("\t\t<p>" + match_string + "</p>\n")
+        output_file.write("\t\t\t\t<p>" + match_string + "</p>\n")
+    output_file.write("\t\t\t</div>\n")
 
 
 # write data for each team to output file as a row of an HTML table.
 def print_teams_to_index_file(output_file, teams):
 
     # table setup
-    output_file.write("\t\t<h3>Standings</h3>\n")
-    output_file.write("\t\t<table id=\"standings\">\n")
-    output_file.write("\t\t\t<thead>\n")
-    output_file.write("\t\t\t\t<tr>\n")
-    output_file.write("\t\t\t\t\t<th>Pos.</th>\n")
-    output_file.write("\t\t\t\t\t<th>Team Name</th>\n")
-    output_file.write("\t\t\t\t\t<th>Owner</th>\n")
-    output_file.write("\t\t\t\t\t<th>Wins</th>\n")
-    output_file.write("\t\t\t\t\t<th>Losses</th>\n")
-    output_file.write("\t\t\t\t\t<th>Streak</th>\n")
-    output_file.write("\t\t\t\t\t<th>Total Points Scored</th>\n")
-    output_file.write("\t\t\t\t\t<th>Average Points Scored</th>\n")
-    output_file.write("\t\t\t\t\t<th>Worst Score</th>\n")
-    output_file.write("\t\t\t\t\t<th>Best Score</th>\n")
-    output_file.write("\t\t\t\t\t<th>Standard Deviation</th>\n")
-    output_file.write("\t\t\t\t</tr>\n")
-    output_file.write("\t\t\t</thead>\n")
+    output_file.write("\t\t\t<div class=\"league_standings\">\n")
+    output_file.write("\t\t\t\t<h3>Standings</h3>\n")
+    output_file.write("\t\t\t\t<table id=\"standings\">\n")
+    output_file.write("\t\t\t\t\t<thead>\n")
+    output_file.write("\t\t\t\t\t\t<tr>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Pos.</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Team Name</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Owner</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Wins</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Losses</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Streak</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Total Points Scored</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Average Points Scored</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Worst Score</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Best Score</th>\n")
+    output_file.write("\t\t\t\t\t\t\t<th>Standard Deviation</th>\n")
+    output_file.write("\t\t\t\t\t\t</tr>\n")
+    output_file.write("\t\t\t\t\t</thead>\n")
 
     # print team data
     teams.sort(key=sort_key_teams_standings)
-    output_file.write("\t\t\t<tbody>\n")
+    output_file.write("\t\t\t\t\t<tbody>\n")
     for team in teams:
         data = compute_score_data(team)
         team_file = "teams/" + str(team.team_id) + ".html"
-        output_file.write("\t\t\t\t<tr>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(team.standing) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td><a href=\"" + team_file + "\">" + team.team_name + "</a></td>\n")
-        output_file.write("\t\t\t\t\t<td>" + team.owner + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(team.wins) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(team.losses) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t<tr>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(team.standing) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td><a href=\"" + team_file + "\">" + team.team_name + "</a></td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + team.owner + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(team.wins) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(team.losses) + "</td>\n")
         if team.streak_type == "WIN":
-            output_file.write("\t\t\t\t\t<td>W " + str(team.streak_length) + "</td>\n")
+            output_file.write("\t\t\t\t\t\t\t<td>W " + str(team.streak_length) + "</td>\n")
         else:
-            output_file.write("\t\t\t\t\t<td>L " + str(team.streak_length) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(round(data[1], 2)) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(round(data[4], 2)) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(round(data[2], 2)) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(round(data[3], 2)) + "</td>\n")
-        output_file.write("\t\t\t\t\t<td>" + str(round(data[5], 2)) + "</td>\n")
-        output_file.write("\t\t\t\t</tr>\n")
+            output_file.write("\t\t\t\t\t\t\t<td>L " + str(team.streak_length) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[1], 2)) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[4], 2)) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[2], 2)) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[3], 2)) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[5], 2)) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t</tr>\n")
 
     # close table
-    output_file.write("\t\t\t</tbody>\n")
-    output_file.write("\t\t</table>\n")
+    output_file.write("\t\t\t\t\t</tbody>\n")
+    output_file.write("\t\t\t\t</table>\n")
+    output_file.write("\t\t\t</div>\n")
 
 
 # create and populate index file.
@@ -272,9 +281,12 @@ def create_index_file(league):
     output_file.write("\t<head>\n")
     output_file.write("\t\t<link rel=\"stylesheet\" href=\"stuff.css\">\n")
     output_file.write("\t\t<title>Fantasy Football Score Data</title>\n")
-    output_file.write("\t<head>\n\n")
+    output_file.write("\t</head>\n\n")
     output_file.write("\t<body>\n")
-    output_file.write("\t\t<h1>Fantasy Ball Z 2023</h1>\n")
+    output_file.write("\t\t<header>\n")
+    output_file.write("\t\t\t<h1>Fantasy Ball Z 2023</h1>\n")
+    output_file.write("\t\t</header>\n")
+    output_file.write("\t\t<main>\n")
 
     print("\tAdding box scores to index.html...")
     print_box_scores_to_index_file(output_file, league)
@@ -283,6 +295,7 @@ def create_index_file(league):
     print_teams_to_index_file(output_file, league.teams)
 
     # close HTML file
+    output_file.write("\t\t</main>\n")
     output_file.write("\t</body>\n\n")
     output_file.write("</html>")
     output_file.close()
