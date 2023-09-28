@@ -16,10 +16,6 @@ main {
     margin-top: 100px;
 }
 
-.last_week_scores h3 {
-    border-bottom: 1px solid #ddd;
-}
-
 a {
     color: red;
     font-weight: bold;
@@ -33,20 +29,48 @@ a:hover, a:active {
 .last_week_scores {
     width: 50%;
     float: left;
+    padding-bottom: 30px;
 }
 
 .last_week_scores h3 {
-    width: 600px;
+    width: 60%;
     border-bottom: 1px solid #ddd;
 }
 
 .this_week_games {
     width: 50%;
     float: right;
+    padding-bottom: 30px;
 }
 
 .this_week_games h3 {
-    width: 600px;
+    width: 60%;
+    border-bottom: 1px solid #ddd;
+}
+
+.recent_activity * {
+    background-color: #eeeeee;
+}
+
+.free_agent {
+    width: 50%;
+    float: left;
+    padding-bottom: 30px;
+}
+
+.free_agent h3 {
+    width: 60%;
+    border-bottom: 1px solid #ddd;
+}
+
+.waiver_wire {
+    width: 50%;
+    float: right;
+    padding-bottom: 30px;
+}
+
+.waiver_wire h3 {
+    width: 60%;
     border-bottom: 1px solid #ddd;
 }
 

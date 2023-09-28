@@ -76,7 +76,8 @@ def print_team_data(output_file, team):
 
     output_file.write("\t\t\t<div class=\"team_data\">\n")
     output_file.write("\t\t\t\t<h3>Stats</h3>\n")
-    output_file.write("\t\t\t\t<p><b>Current Streak:</b> " + team.streak_type + " " + str(team.streak_length) + "</p>\n")
+    output_file.write("\t\t\t\t<p><b>Current Streak:</b> " + team.streak_type + " " + str(team.streak_length) +
+                      "</p>\n")
     output_file.write("\t\t\t\t<p><b>Total Points Scored This Season:</b> " + str(round(team.points_for, 2)) + "</p>\n")
     output_file.write("\t\t\t\t<p><b>Average Points Per Game:</b> " + str(round(data[4], 2)) + "</p>\n")
     output_file.write("\t\t\t\t<p><b>Best Score:</b> " + max_score_string + "</p>\n")
@@ -218,6 +219,40 @@ def print_box_scores_to_index_file(output_file, league):
     output_file.write("\t\t\t</div>\n")
 
 
+def print_recent_activity_to_index_file(output_file, league):
+    print("\t\tRetrieving FA activity...")
+    recent_fa = league.recent_activity(size=10, msg_type='FA', offset=0)
+    print("\t\tRetrieving waiver activity...")
+    recent_waivers = league.recent_activity(size=10, msg_type='WAIVER', offset=0)
+    output_file.write("\t\t\t<div class=\"recent_activity\">\n")
+
+    # free agent acquisitions
+    output_file.write("\t\t\t\t<div class=\"free_agent\">\n")
+    output_file.write("\t\t\t\t\t<h3 id=\"free_agent_acquisitions\">Recent Free Agent Acquisitions</h3>\n")
+    for action in recent_fa:
+        team = action.actions[0][0]
+        player = action.actions[0][2]
+        action_string = ("<a href=\"teams/" + str(team.team_id) + ".html\">" + team.team_name + "</a> acquires " +
+                         player.name + " (" + player.position + ", " + player.proTeam + ")")
+        output_file.write("\t\t\t\t\t<p>" + action_string + "</p>\n")
+    output_file.write("\t\t\t\t</div>\n")
+
+    # waiver wire claims
+    output_file.write("\t\t\t\t<div class=\"waiver_wire\">\n")
+    output_file.write("\t\t\t\t\t<h3 id=\"waiver_claims\">Recent Waiver Wire Claims</h3>\n")
+    for action in recent_waivers:
+        team = action.actions[0][0]
+        player = action.actions[0][2]
+        cost = action.actions[0][3]
+        action_string = ("<a href=\"teams/" + str(team.team_id) + ".html\">" + team.team_name + "</a> claims " +
+                         player.name + " (" + player.position + ", " + player.proTeam + ") for $" + str(cost))
+        output_file.write("\t\t\t\t\t<p>" + action_string + "</p>\n")
+    output_file.write("\t\t\t\t</div>\n")
+
+    # close overarching activity div
+    output_file.write("\t\t\t</div>\n")
+
+
 # write data for each team to output file as a row of an HTML table.
 def print_teams_to_index_file(output_file, teams):
 
@@ -290,6 +325,9 @@ def create_index_file(league):
 
     print("\tAdding box scores to index.html...")
     print_box_scores_to_index_file(output_file, league)
+    output_file.write("\n")
+    print("\tAdding recent activity to index file...")
+    print_recent_activity_to_index_file(output_file, league)
     output_file.write("\n")
     print("\tAdding standings to index.html...")
     print_teams_to_index_file(output_file, league.teams)
