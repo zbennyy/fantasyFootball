@@ -2,6 +2,24 @@
     font-family: Verdana;
 }
 
+header {
+    position: fixed;
+    top: 0;
+    left: 10;
+    z-index: 1;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background: #ffffff;
+}
+
+main {
+    margin-top: 100px;
+}
+
+.last_week_scores h3 {
+    border-bottom: 1px solid #ddd;
+}
+
 a {
     color: red;
     font-weight: bold;
@@ -17,9 +35,24 @@ a:hover, a:active {
     float: left;
 }
 
+.last_week_scores h3 {
+    width: 600px;
+    border-bottom: 1px solid #ddd;
+}
+
 .this_week_games {
     width: 50%;
     float: right;
+}
+
+.this_week_games h3 {
+    width: 600px;
+    border-bottom: 1px solid #ddd;
+}
+
+.league_standings {
+    float: left;
+    width: 100%;
 }
 
 #standings {
