@@ -1,4 +1,43 @@
+* {
+    font-family: Verdana;
+}
+
+#team_name {
+    position: sticky;
+    top: 0;
+    padding: 100px;
+}
+
+p {
+    padding: 0px;
+}
+
+a {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#team_scoreboard {
+    width: 70%;
+}
+
+#roster {
+    width: 100%;
 }
