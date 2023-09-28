@@ -12,9 +12,19 @@ a:hover, a:active {
   text-decoration: underline;
 }
 
+.last_week_scores {
+    width: 50%;
+    float: left;
+}
+
+.this_week_games {
+    width: 50%;
+    float: right;
+}
+
 #standings {
     border: none;
-    width: 100%
+    width: 100%;
 }
 
 #standings th {
