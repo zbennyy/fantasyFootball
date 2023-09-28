@@ -61,9 +61,9 @@ def print_teams_to_file(output_file, teams):
 
 
 def main():
-    cookies_file = open('Scripts/secret_stuff.txt', 'r')
-    my_s2 = cookies_file.readline()
-    my_swid = cookies_file.readline()
+    cookies_file = open('venv/secret_stuff.txt', 'r')
+    my_s2 = cookies_file.readline().strip()
+    my_swid = cookies_file.readline().strip()
     cookies_file.close()
 
     my_league = League(league_id=859158741, year=2023, espn_s2=my_s2, swid=my_swid)
