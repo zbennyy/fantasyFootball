@@ -298,7 +298,7 @@ def print_teams_to_index_file(output_file, teams):
         output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[3], 2)) + "</td>\n")
         output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[2], 2)) + "</td>\n")
         output_file.write("\t\t\t\t\t\t\t<td>" + str(round(data[5], 2)) + "</td>\n")
-        output_file.write("\t\t\t\t\t\t\t<td>" + str(team.playoff_pct) + "</td>\n")
+        output_file.write("\t\t\t\t\t\t\t<td>" + str(round(team.playoff_pct, 2)) + "</td>\n")
         output_file.write("\t\t\t\t\t\t</tr>\n")
 
     # close table
