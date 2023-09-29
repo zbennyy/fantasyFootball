@@ -1,0 +1,71 @@
+* {
+    font-family: Verdana;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 10;
+    z-index: 1;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background: #ffffff;
+}
+
+header h1 {
+    float: left;
+}
+
+main {
+    margin-top: 100px;
+}
+
+a {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
+.game_0 table {
+    float: left;
+    padding-bottom: 30px;
+    width: 40%;
+}
+
+.game_1 table {
+    float: right;
+    padding-bottom: 30px;
+    margin-right: 100px;
+    width: 40%;
+}
+
+#return_to_home {
+    float: right;
+    text-align: right;
+    margin-right: 100px;
+    width: 40%;
+}
+
+table, th, td {
+    text-align: left;
+}
+
+.player_left {
+    text-align: right;
+}
+
+.score {
+    text-align: center;
+}
+
+.team {
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

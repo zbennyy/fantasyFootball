@@ -77,7 +77,7 @@ a:hover, a:active {
 .league_standings {
     float: left;
     width: 100%;
-    bottom-padding: 30px;
+    padding-bottom: 30px;
 }
 
 #standings {
