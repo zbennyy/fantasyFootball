@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import math
 
 from espn_api.football import League

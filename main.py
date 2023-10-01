@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import teamfiles
 import homepage
 import scoreboards

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from espn_api.football import League
 
 
@@ -111,10 +113,12 @@ def print_week_scoreboard(output_file, box_scores, week_num):
         for i in range(len(home_active)):
             output_file.write("\t\t\t\t\t\t<tr>\n")
             output_file.write("\t\t\t\t\t\t\t<td class=\"pos_name\">" + convert_index_to_position(i) + "</td>\n")
-            output_file.write("\t\t\t\t\t\t\t<td class=\"player_left\">" + home_active[i].name + " (" + home_active[i].proTeam + ")</td>\n")
+            output_file.write("\t\t\t\t\t\t\t<td class=\"player_left\">" + home_active[i].name + " (" +
+                              home_active[i].proTeam + ")</td>\n")
             output_file.write("\t\t\t\t\t\t\t<td class=\"score\">" + str(home_active[i].points) + "</td>\n")
             output_file.write("\t\t\t\t\t\t\t<td class=\"score\">" + str(away_active[i].points) + "</td>\n")
-            output_file.write("\t\t\t\t\t\t\t<td class=\"player_right\">" + away_active[i].name + " (" + home_active[i].proTeam + ")</td>\n")
+            output_file.write("\t\t\t\t\t\t\t<td class=\"player_right\">" + away_active[i].name + " (" +
+                              home_active[i].proTeam + ")</td>\n")
             output_file.write("\t\t\t\t\t\t</tr>\n")
         output_file.write("\t\t\t\t\t</tbody>\n")
 
