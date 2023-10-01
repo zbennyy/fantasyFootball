@@ -118,7 +118,7 @@ def print_week_scoreboard(output_file, box_scores, week_num):
             output_file.write("\t\t\t\t\t\t\t<td class=\"score\">" + str(home_active[i].points) + "</td>\n")
             output_file.write("\t\t\t\t\t\t\t<td class=\"score\">" + str(away_active[i].points) + "</td>\n")
             output_file.write("\t\t\t\t\t\t\t<td class=\"player_right\">" + away_active[i].name + " (" +
-                              home_active[i].proTeam + ")</td>\n")
+                              away_active[i].proTeam + ")</td>\n")
             output_file.write("\t\t\t\t\t\t</tr>\n")
         output_file.write("\t\t\t\t\t</tbody>\n")
 
