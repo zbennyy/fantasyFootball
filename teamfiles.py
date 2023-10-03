@@ -105,7 +105,7 @@ def print_team_scoreboard(output_file, team):
             score = team.scores[week - 1]
             opp_score = team.schedule[week - 1].scores[week - 1]
             score_string = outcome + " " + str(score) + " - " + str(opp_score)
-            week_string = "<a href=\"/fantasyFootball/weeks/week_" + str(week) + ".html\">Week " + str(week)
+            week_string = "<a href=\"/fantasyFootball/weeks/week_" + str(week) + ".html\">Week " + str(week) + "</a>"
             output_file.write("\t\t\t\t\t<tr>\n")
             output_file.write("\t\t\t\t\t\t<td>" + week_string + "</td>\n")
             output_file.write("\t\t\t\t\t\t<td><a href=\"" + opponent_link + "\">" + opponent_name + "</a></td>\n")
@@ -125,7 +125,7 @@ def print_roster(output_file, players):
     output_file.write("\t\t\t\t<table id=\"roster\">\n")
     output_file.write("\t\t\t\t\t<tr>\n")
     output_file.write("\t\t\t\t\t\t<th>Position</th>\n")
-    output_file.write("\t\t\t\t\t\t<th>Player</th>\n")
+    output_file.write("\t\t\t\t\t\t<th>Player (Pos. Rank)</th>\n")
     output_file.write("\t\t\t\t\t\t<th>Team</th>\n")
     output_file.write("\t\t\t\t\t\t<th>Total Points</th>\n")
     output_file.write("\t\t\t\t\t\t<th>Projected Total Points</th>\n")
@@ -136,7 +136,10 @@ def print_roster(output_file, players):
     for player in players:
         output_file.write("\t\t\t\t\t<tr>\n")
         output_file.write("\t\t\t\t\t\t<td>" + player.position + "</td>\n")
-        output_file.write("\t\t\t\t\t\t<td>" + player.name + "</td>\n")
+        if player.posRank == 0:
+            output_file.write("\t\t\t\t\t\t<td>" + player.name + " (N/A)</td>\n")
+        else:
+            output_file.write("\t\t\t\t\t\t<td>" + player.name + " (#" + str(player.posRank) + ")</td>\n")
         output_file.write("\t\t\t\t\t\t<td>" + player.proTeam + "</td>\n")
         output_file.write("\t\t\t\t\t\t<td>" + str(player.total_points) + "</td>\n")
         output_file.write("\t\t\t\t\t\t<td>" + str(player.projected_total_points) + "</td>\n")
@@ -164,6 +167,8 @@ def create(teams):
         output_file.write("\t\t<title>" + team.team_name + "</title>\n")
         output_file.write("\t</head>\n\n")
         output_file.write("\t<body>\n")
+        output_file.write("\t\t<img src=\"" + team.logo_url + "\" alt=\"" + team.team_name + " logo\" width=100%>\n")
+        output_file.write("\t\t<div class=\"text\">\n")
         output_file.write("\t\t<header>\n")
         output_file.write("\t\t\t<h1 id=\tteam_name\">" + team_header_string + "</h1>\n")
         output_file.write("\t\t\t<h2>Owner: " + team.owner + "</h2>\n")
@@ -181,6 +186,7 @@ def create(teams):
         output_file.write("\t\t<footer>\n")
         output_file.write("\t\t\t<p><a href=\"/fantasyFootball\">Return to Home</a></p>\n")
         output_file.write("\t\t</footer>\n")
+        output_file.write("\t\t</div>\n")
         output_file.write("\t</body>\n\n")
         output_file.write("</html>")
         output_file.close()

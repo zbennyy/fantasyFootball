@@ -30,6 +30,10 @@ a:hover, a:active {
   text-decoration: underline;
 }
 
+.week_data {
+    padding-bottom: 20px;
+}
+
 .game_0 table {
     float: left;
     padding-bottom: 30px;

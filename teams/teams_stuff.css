@@ -2,6 +2,16 @@
     font-family: Verdana;
 }
 
+body {
+    position: relative;
+}
+
+.text {
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -14,6 +24,12 @@ header {
 
 main {
     margin-top: 150px;
+}
+
+img {
+    position: relative;
+    opacity: 0.1;
+    height: 100%;
 }
 
 a {

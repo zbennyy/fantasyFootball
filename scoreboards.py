@@ -62,7 +62,7 @@ def convert_index_to_position(index):
         return "K"
 
 
-def print_week_scoreboard(output_file, box_scores, week_num):
+def print_week_scoreboard(output_file, my_league, week_num):
     print("\tCreating scoreboard for week " + str(week_num) + "...")
     output_file.write("<!DOCTYPE html>\n")
     output_file.write("<html lang=en>\n\n")
@@ -77,8 +77,35 @@ def print_week_scoreboard(output_file, box_scores, week_num):
     output_file.write("\t\t</header>\n")
     output_file.write("\t\t<main>\n")
 
+    # find the week's highest and lowest scorers
+    best_team = None
+    best_score = 0
+    worst_team = None
+    worst_score = 1000
+    for game in my_league.box_scores(week=week_num):
+        if game.home_score > best_score:
+            best_team = game.home_team
+            best_score = game.home_score
+        if game.home_score < worst_score:
+            worst_team = game.home_team
+            worst_score = game.home_score
+        if game.away_score > best_score:
+            best_team = game.away_team
+            best_score = game.away_score
+        if game.away_score < worst_score:
+            worst_team = game.away_team
+            worst_score = game.away_score
+    best_team_string = ("<a href=\"/fantasyFootball/teams/" + str(best_team.team_id) + ".html\">" +
+                        best_team.team_name + "</a> (" + str(round(best_score, 2)) + " points)")
+    worst_team_string = ("<a href=\"/fantasyFootball/teams/" + str(worst_team.team_id) + ".html\">" +
+                         worst_team.team_name + "</a> (" + str(round(worst_score, 2)) + " points)")
+    output_file.write("\t\t\t<div class=\"week_data\">\n")
+    output_file.write("\t\t\t\t<p><b>This Week's High Scorer:</b> " + best_team_string + "</p>\n")
+    output_file.write("\t\t\t\t<p><b>This Week's Lowest Scorer:</b> " + worst_team_string + "</p>\n")
+    output_file.write("\t\t\t</div>\n")
+
     div_type = 0
-    for game in box_scores:
+    for game in league.box_scores(week=week_num):
 
         # collect data
         home_team_string = ("<a href=\"/fantasyFootball/teams/" + str(game.home_team.team_id) + ".html\">"
@@ -148,8 +175,7 @@ def create(my_league):
     print("Creating week-by-week scoreboards...")
     for week in range(1, my_league.current_week):
         output_file = open('weeks/week_' + str(week) + '.html', 'w')
-        box_scores = my_league.box_scores(week=week)
-        print_week_scoreboard(output_file, box_scores, week)
+        print_week_scoreboard(output_file, league, week)
         output_file.close()
 
 
