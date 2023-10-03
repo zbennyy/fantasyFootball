@@ -33,14 +33,13 @@ a:hover, a:active {
 .game_0 table {
     float: left;
     padding-bottom: 30px;
-    width: 40%;
+    width: 45%;
 }
 
 .game_1 table {
     float: right;
     padding-bottom: 30px;
-    margin-right: 100px;
-    width: 40%;
+    width: 45%;
 }
 
 #return_to_home {
