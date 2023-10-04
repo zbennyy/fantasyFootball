@@ -105,7 +105,7 @@ def print_week_scoreboard(output_file, my_league, week_num):
     output_file.write("\t\t\t</div>\n")
 
     div_type = 0
-    for game in league.box_scores(week=week_num):
+    for game in my_league.box_scores(week=week_num):
 
         # collect data
         home_team_string = ("<a href=\"/fantasyFootball/teams/" + str(game.home_team.team_id) + ".html\">"
@@ -175,7 +175,7 @@ def create(my_league):
     print("Creating week-by-week scoreboards...")
     for week in range(1, my_league.current_week):
         output_file = open('weeks/week_' + str(week) + '.html', 'w')
-        print_week_scoreboard(output_file, league, week)
+        print_week_scoreboard(output_file, my_league, week)
         output_file.close()
 
 
