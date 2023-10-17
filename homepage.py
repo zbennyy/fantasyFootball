@@ -28,7 +28,7 @@ def compute_score_data(team):
                 max_week = week
             games_played += 1
 
-    average_score = sum_scores / games_played - 1
+    average_score = sum_scores / games_played - 1       # degrees of freedom = n-1 for variance calculations
     variance = 0
 
     for score in team.scores:
@@ -37,6 +37,7 @@ def compute_score_data(team):
 
     variance /= games_played
     standard_deviation = math.sqrt(variance)
+    average_score = sum_scores / games_played           # compute actual average PPG
 
     return [games_played, sum_scores, min_score, max_score, average_score, standard_deviation, min_week, max_week]
 
